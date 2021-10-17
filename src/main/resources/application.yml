@@ -1,0 +1,19 @@
+app:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/demoDB
+    username: usr
+    password: pwd
+    driver-class-name: org.postgresql.Driver
+
+spring:
+  datasource:
+    url: ${app.datasource.url}
+    username: ${app.datasource.username}
+    password: ${app.datasource.password}
+    driver-class-name: ${app.datasource.driver-class-name}
+  liquibase:
+    url: ${app.datasource.url}
+    user: ${app.datasource.username}
+    password: ${app.datasource.password}
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    contexts: ${spring.profiles.active}
